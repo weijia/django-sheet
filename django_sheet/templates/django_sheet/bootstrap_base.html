@@ -1,0 +1,28 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+{% load admin_static bootstrapped_goodies_tags %}{% load url from future %}
+
+{% block title %}{% trans 'Bootstrap Base Title' %}{% endblock %}
+
+{% block branding %}
+<!--<a class="brand" href="{% url 'admin:index' %}">{% render_with_template_if_exist "admin/admin_title.html" "Django administration" %}</a>-->
+{% endblock %}
+
+<!-- Admin activities -->
+{% block logs %}
+{% endblock %}
+
+<!-- Admin docs -->
+{% block userlinks %}
+{% endblock %}
+
+<!-- content -->
+{% block content %}
+Hello world
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+
+{% block nav-global %}{% endblock %}
