@@ -10,6 +10,15 @@ function getEmptyElemInArray(n){
 }
 
 
+function getMaxCol(dataArray){
+    var maxRow = 0;
+    var maxCol = 0;
+    for(var index=0; index<dataArray.length; ++index){
+        if(dataArray[index][")
+    }
+}
+
+
 function loadJson(json){
     var tableData = [];
     var maxRow = json["max_row"];
