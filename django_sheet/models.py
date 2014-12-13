@@ -15,8 +15,8 @@ class Sheet(models.Model):
 
 
 class Cell(models.Model):
-    cell_row = models.IntegerField()
-    cell_column = models.IntegerField()
+    cell_row = models.IntegerField(help_text="0 based row")
+    cell_column = models.IntegerField(help_text="0 based col")
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     cell_value = generic.GenericForeignKey('content_type', 'object_id')

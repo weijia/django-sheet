@@ -11,25 +11,42 @@ function getEmptyElemInArray(n){
 
 
 function getMaxCol(dataArray){
-    var maxRow = 0;
+    //var maxRow = 0;
     var maxCol = 0;
     for(var index=0; index<dataArray.length; ++index){
-        if(dataArray[index][")
+        if(dataArray[index]["cell_column"]>maxCol) maxCol=dataArray[index]["cell_column"];
     }
+    return maxCol;
+}
+function getMaxRow(dataArray){
+    var maxRow = 0;
+    //var maxCol = 0;
+    for(var index=0; index<dataArray.length; ++index){
+        if(dataArray[index]["cell_row"]>maxRow) maxRow=dataArray[index]["cell_row"];
+    }
+    return maxRow;
 }
 
 
 function loadJson(json){
     var tableData = [];
-    var maxRow = json["max_row"];
-    var maxCol = json["max_col"];
+
+    var dataArray = json["objects"];
+
+    var maxRow = getMaxRow(dataArray)+1;//json["max_row"];
+    var maxCol = getMaxCol(dataArray)+1;//json["max_col"];
+
+
     for(var row=0; row<maxRow; ++row){
         tableData[row] = getEmptyElemInArray(maxCol);
     }
-    var dataArray = json["data"];
+
     for(var index=0; index<dataArray.length; ++index){
         var data = dataArray[index];
-        tableData[data["row"]][data["col"]] = data["value"];
+        var row = data["cell_row"];
+        var col = data["cell_column"];
+        var value_obj = data["cell_value"];
+        tableData[row][col] = value_obj["value"];
     }
     var tableStr = "";
     for(var rowIndex=0; rowIndex<maxRow; ++rowIndex){
