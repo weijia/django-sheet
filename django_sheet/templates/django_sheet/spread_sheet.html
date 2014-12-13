@@ -12,6 +12,7 @@
         <script src="{% static 'js/jQuery.sheet/bower_components/jquery-legacy/dist/jquery.js' %}"></script>
         <script src="{% static 'js/jQuery.sheet/parser/formula/formula.js' %}"></script>
         <script src="{% static 'js/jQuery.sheet/jquery.sheet.js' %}"></script>
+        <script src="{% static 'js/django_sheet.js' %}"></script>
         <script>
 	        $.sheet.preLoad("{% static 'js/jQuery.sheet/'%}");
             $(function(){
@@ -25,6 +26,8 @@
 			            $msg.remove();
 		            });
 	            }
+	            var tableStr = loadJson(serverJson);
+	            $("#sheet0Table").html(tableStr);
 				$('#jQuerySheet0')
 					//Note these events don't yet work as triggers.  Also, you can use them as settings as well.
 						.bind('sheetAddRow', function() {
@@ -48,14 +51,40 @@
 						.bind('sheetFormulaKeydown', function() {
 							growl('Formula keydown!')
 						})
-						.bind('sheetCellEdit', function() {
-							growl('A cell is being edited!')
+						.bind('sheetCellEdit', function(a, cell, c, d ,e, f, g) {
+							growl('A cell is being edited!');
+							//console.log("cell edit", a, cell, c, d, e, f, g);
 						})
-						.bind('sheetCellEdited', function() {
-							growl('A cell was edited!')
+						.bind('sheetCellEdited', function(a, tb, cell, d, e, f, g) {
+							growl('A cell was edited!');
+							//console.log("cell edited: ", a, tb, cell, d, e, f, g);
+							//console.log(tb.spreadsheets[0]);
+							//console.log(tb.spreadsheets[0][0]);
+							var col = cell.td.cellIndex;
+							var row = cell.td.parentNode.rowIndex;
+							console.log(col, row, cell.value);
+
+							// This may require the ``json2.js`` library for older browsers.
+                            var data = JSON.stringify({
+                                "row": row,
+                                "col": col,
+                                "value": cell.value,
+                            });
+
+                            $.ajax({
+                              url: 'http://localhost:8000/api/',
+                              type: 'POST',
+                              contentType: 'application/json',
+                              data: data,
+                              dataType: 'json',
+                              processData: false
+                            })
+
 						})
-						.bind('sheetCalculation', function() {
-							growl('A sheet was calculated!')
+						.bind('sheetCalculation', function(a, b, c, d) {
+							growl('A sheet was calculated!');
+							//console.log("sheet cal: ", a, b, c, d);
+							//console.log(a, b, c, d, e, f, g);
 						})
 						.bind('sheetAdd', function() {
 							growl('A sheet was added!')
@@ -81,7 +110,9 @@
 						.bind('sheetFullScreen', function() {
 							growl('A sheet went fullscreen!')
 						})
-						.sheet();
+						.sheet(
+						    //{loader: new Sheet.JSONLoader( [{"title":"Spreadsheet 1","rows":[]}] )}// not working
+						);
             });
         </script>
 {% endblock %}
@@ -92,9 +123,9 @@
     <tr>
         <td style="width: 80%;vertical-align: top;">
             <div id="jQuerySheet0" >
-                <table>
+                <table id="sheet0Table">
                     <tr>
-                        <td></td>
+                        <td>Hello world</td>
                     </tr>
                 </table>
             </div>
