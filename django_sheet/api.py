@@ -1,3 +1,4 @@
+from tastypie.constants import ALL, ALL_WITH_RELATIONS
 from tastypie.authorization import DjangoAuthorization
 from tastypie.contrib.contenttypes.fields import GenericForeignKeyField
 from tastypie.resources import ModelResource
@@ -44,5 +45,6 @@ class CellResource(ModelResource):
     class Meta:
         resource_name = 'cell'
         queryset = Cell.objects.all()
+        filtering = {"sheet": ALL_WITH_RELATIONS}
         authentication = DjangoUserAuthentication()
         authorization = DjangoAuthorization()

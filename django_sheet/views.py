@@ -26,8 +26,9 @@ def update_cell(request):
     json_obj = json.loads(json_str)
     s = StringCellValue(value=json_obj["value"])
     s.save()
+    sheet_name = json_obj["sheet"]
     sheet_file, is_file_created = SheetFile.objects.get_or_create(filename="TestFile")
-    sheet, is_sheet_created = Sheet.objects.get_or_create(sheet_name="Testing", sheet_file=sheet_file)
+    sheet, is_sheet_created = Sheet.objects.get_or_create(sheet_name=sheet_name, sheet_file=sheet_file)
     existing_cell = Cell.objects.filter(cell_row=json_obj["cell_row"], cell_column=json_obj["cell_column"],
                                         sheet=sheet)
     if existing_cell.exists():
