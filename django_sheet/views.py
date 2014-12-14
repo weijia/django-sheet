@@ -19,6 +19,7 @@ class JqSheetSpreadSheetTemplateView(TemplateView):
             sheet, is_sheet_created = Sheet.objects.get_or_create(sheet_name=sheet_name, sheet_file=sheet_file)
         kwargs = super(JqSheetSpreadSheetTemplateView, self).get_context_data(**kwargs)
         kwargs["sheet_name"] = sheet_name
+        kwargs["editable_bool"] = "true"
         return kwargs
 
 

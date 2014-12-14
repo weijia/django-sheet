@@ -1,5 +1,5 @@
 from tastypie.constants import ALL, ALL_WITH_RELATIONS
-from tastypie.authorization import DjangoAuthorization
+from tastypie.authorization import DjangoAuthorization, Authorization
 from tastypie.contrib.contenttypes.fields import GenericForeignKeyField
 from tastypie.resources import ModelResource
 from djangoautoconf.req_with_auth import DjangoUserAuthentication
@@ -34,6 +34,24 @@ def return_true():
 """
 
 
+class ReadOnlyAuthorization(DjangoAuthorization):
+    def read_list(self, object_list, bundle):
+        # This assumes a ``QuerySet`` from ``ModelResource``.
+        return object_list
+
+    def read_detail(self, object_list, bundle):
+        # Is the requested object owned by the user?
+        # TODO: check bundle.request.user
+        return True
+
+
+class AllowAll(DjangoUserAuthentication):
+    def is_authenticated(self, request, **kwargs):
+        if not super(AllowAll, self).is_authenticated(request, **kwargs):
+            return True
+        return True
+
+
 class CellResource(ModelResource):
     #authentication = return_true
     #authorization = return_true
@@ -46,5 +64,5 @@ class CellResource(ModelResource):
         resource_name = 'cell'
         queryset = Cell.objects.all()
         filtering = {"sheet": ALL_WITH_RELATIONS}
-        authentication = DjangoUserAuthentication()
-        authorization = DjangoAuthorization()
+        authentication = AllowAll()
+        authorization = ReadOnlyAuthorization()
