@@ -9,6 +9,8 @@
         <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
         <meta content="utf-8" http-equiv="encoding">
 
+         <link data-jsfiddle="common" rel="stylesheet" media="screen" href="{% static 'css/django_sheet.css'%}">
+
         <script src="{% static 'js/jQuery.sheet/bower_components/jquery-legacy/dist/jquery.js' %}"></script>
         <script src="{% static 'js/jQuery.sheet/parser/formula/formula.js' %}"></script>
         <script src="{% static 'js/jQuery.sheet/jquery.sheet.js' %}"></script>
@@ -47,7 +49,7 @@
                             console.log(widthSetting);
                             setColWidth(widthSetting.colIndex, widthSetting.width);
                         }
-
+                        //{"colWidthList": [{"colIndex": 3, "width": 30}]}
                     });
 
 
@@ -97,6 +99,8 @@
                                 contextmenuLeft: {"Not supported yet": function(){}}// not working too
 						    }
 						);
+
+						$(".jSSheetAdder").hide()
 
 				});
             });
