@@ -27,8 +27,7 @@ function getMaxRow(dataArray){
     return maxRow;
 }
 
-
-function loadJson(json){
+function generateTableArray(json){
     var tableData = [];
 
     var dataArray = json["objects"];
@@ -48,6 +47,15 @@ function loadJson(json){
         var value_obj = data["cell_value"];
         tableData[row][col] = value_obj["value"];
     }
+    return tableData;
+}
+
+
+function loadJson(json){
+    var dataArray = json["objects"];
+    var tableData = generateTableArray(json);
+    var maxRow = getMaxRow(dataArray)+1;//json["max_row"];
+    var maxCol = getMaxCol(dataArray)+1;//json["max_col"];
     var tableStr = "";
     for(var rowIndex=0; rowIndex<maxRow; ++rowIndex){
         tableStr +="<tr>";

@@ -30,9 +30,26 @@
 	            //var tableStr = loadJson(serverJson);
 	            //$("#sheet0Table").html(tableStr);
 
-	            $.getJSON("/django_sheet/api/cell/?format=json&sheet__sheet_name=First sheet", "", function(serverJson){
+	            function setColWidth(index, width){
+	                $('#jQuerySheet0 colgroup col')[index].style.width = width+"px";
+	            }
+
+	            $.getJSON("/django_sheet/api/cell/?format=json&sheet__sheet_name={{sheet_name}}", "", function(serverJson){
 	                var tableStr = loadJson(serverJson);
                     $("#sheet0Table").html(tableStr);
+                    $.getJSON("/django_sheet/api/sheet/?format=json&sheet_name={{sheet_name}}", "", function(sheetInfo){
+                        var sheetProp = sheetInfo["objects"][0]["sheet_prop"];
+                        console.log(sheetProp);
+                        var prop = JSON.parse(sheetProp);
+                        var widthSettings = prop["colWidthList"];
+                        for(var colIndex=0; colIndex < widthSettings.length; ++colIndex){
+                            var widthSetting = widthSettings[colIndex];
+                            console.log(widthSetting);
+                            setColWidth(widthSetting.colIndex, widthSetting.width);
+                        }
+
+                    });
+
 
 				    $('#jQuerySheet0')
 						.bind('sheetCellEdited', function(a, tb, cell, d, e, f, g) {
@@ -63,24 +80,36 @@
                                   processData: false
                                 });
 						})
+						.bind('sheetAddColumn', function(a, b, c) {
+							console.log(a, b, c);
+						})
+						.bind('sheetColumnWidthChanged', function(a, b, c) {
+							console.log(a, b, c);
+						})
 						.sheet(
 						    {
 						        //title: "First sheet"
 						        //loader: new Sheet.JSONLoader( [{"title":"Spreadsheet 1","rows":[]}] )// not working
+						        minSize: {
+                                    rows:15,
+                                    cols: 20
+                                },
+                                contextmenuLeft: {"Not supported yet": function(){}}// not working too
 						    }
 						);
+
 				});
             });
         </script>
 {% endblock %}
 
 {% block content %}
-<h1>First sheet</h1>
+<h1>{{sheet_name}}</h1>
 <table style="width: 100%;">
     <tr>
         <td style="width: 80%;vertical-align: top;">
             <div id="jQuerySheet0" >
-                <table id="sheet0Table" title="First sheet">
+                <table id="sheet0Table" title="{{sheet_name}}">
                     <tr>
                         <td>Loading</td>
                     </tr>

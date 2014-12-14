@@ -6,7 +6,7 @@ from api import CellResource, string_cell_value_resource_class
 from djangoautoconf.auto_conf_urls import add_default_root_url
 from djangoautoconf.tastypie_utils import create_tastypie_resource
 from django_sheet.models import Sheet, Cell, DateCellValue, FloatCellValue, StringCellValue, IntegerCellValue, SheetFile
-from views import SpreadSheetTemplateView, update_cell
+from views import JqSheetSpreadSheetTemplateView, update_cell, HandsonTableSpreadSheetTemplateView
 
 __author__ = 'weijia'
 
@@ -14,7 +14,8 @@ __author__ = 'weijia'
 cell_resource = CellResource()
 
 urlpatterns = patterns('',
-    url(r'^$', SpreadSheetTemplateView.as_view(), name='demo_home'),
+    url(r'^$', JqSheetSpreadSheetTemplateView.as_view(), name='demo_home'),
+    #url(r'^$', HandsonTableSpreadSheetTemplateView.as_view(), name='demo_home'),
     url(r'^update_cell', update_cell),
     #url(r'^api/', include(string_value_res.urls)),
     url(r'^api/', include(cell_resource.urls)),
