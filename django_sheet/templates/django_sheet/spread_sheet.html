@@ -13,6 +13,7 @@
         <script src="{% static 'js/jQuery.sheet/parser/formula/formula.js' %}"></script>
         <script src="{% static 'js/jQuery.sheet/jquery.sheet.js' %}"></script>
         <script src="{% static 'js/django_sheet.js' %}"></script>
+        <script src="{% static 'js/csrf.js' %}"></script>
         <script>
 	        $.sheet.preLoad("{% static 'js/jQuery.sheet/'%}");
             $(function(){
@@ -44,6 +45,7 @@
 							console.log(col, row, cell.value);
 
 							// This may require the ``json2.js`` library for older browsers.
+							/*
                             var data = JSON.stringify({
                                 "value": cell.value
                             });
@@ -67,7 +69,7 @@
                                 });
 
                                 $.ajax({
-                                  url: '/django_sheet/api/cell/',
+                                  url: '/django_sheet/update_cell/',
                                   type: 'POST',
                                   contentType: 'application/json',
                                   data: data,
@@ -76,26 +78,25 @@
                                 });
 
                               }
-                            });
-
-                            /*
-                            // This may require the ``json2.js`` library for older browsers.
-                            var data = JSON.stringify({
-                                "cell_row": row-1,
-                                "cell_column": col-1,
-                                //"value": cell.value,
-                                "cell_value": {"value": cell.value, "resource": "string_cell_value"}
-                            });
-
-                            $.ajax({
-                              url: '/django_sheet/api/cell/',
-                              type: 'POST',
-                              contentType: 'application/json',
-                              data: data,
-                              dataType: 'json',
-                              processData: false
                             });*/
 
+                                // This may require the ``json2.js`` library for older browsers.
+                                var data = JSON.stringify({
+                                    "cell_row": row-1,
+                                    "cell_column": col-1,
+                                    "value": cell.value,
+                                    //"cell_value": a["resource_uri"],
+                                    "sheet": "/django_sheet/api/sheet/1/"
+                                });
+
+                                $.ajax({
+                                  url: '/django_sheet/update_cell/',
+                                  type: 'POST',
+                                  contentType: 'application/json',
+                                  data: data,
+                                  dataType: 'json',
+                                  processData: false
+                                });
 						})
 						.sheet(
 						    //{loader: new Sheet.JSONLoader( [{"title":"Spreadsheet 1","rows":[]}] )}// not working
