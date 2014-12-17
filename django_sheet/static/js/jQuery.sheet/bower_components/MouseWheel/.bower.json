@@ -1,0 +1,13 @@
+{
+  "name": "MouseWheel",
+  "homepage": "https://github.com/robertleeplummerjr/MouseWheel",
+  "_release": "b5a7fa2506",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "b5a7fa25067dada1e5cd5e836c09d7671af8d8f0"
+  },
+  "_source": "https://github.com/robertleeplummerjr/MouseWheel.git",
+  "_target": "*",
+  "_originalSource": "https://github.com/robertleeplummerjr/MouseWheel.git"
+}

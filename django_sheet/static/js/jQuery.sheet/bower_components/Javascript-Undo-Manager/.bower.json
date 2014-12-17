@@ -1,0 +1,13 @@
+{
+  "name": "Javascript-Undo-Manager",
+  "homepage": "https://github.com/ArthurClemens/Javascript-Undo-Manager",
+  "_release": "c4d76ba5a9",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "c4d76ba5a9e405121ffbb498c76ba4a8bf5170d1"
+  },
+  "_source": "git://github.com/ArthurClemens/Javascript-Undo-Manager.git",
+  "_target": "*",
+  "_originalSource": "Javascript-Undo-Manager"
+}

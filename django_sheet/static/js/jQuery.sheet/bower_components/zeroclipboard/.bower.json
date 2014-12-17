@@ -1,0 +1,14 @@
+{
+  "name": "zeroclipboard",
+  "homepage": "https://github.com/zeroclipboard/zeroclipboard",
+  "version": "2.1.6",
+  "_release": "2.1.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.1.6",
+    "commit": "e4f6ab73861924341792aa671592cdcb45d6e5cc"
+  },
+  "_source": "git://github.com/zeroclipboard/zeroclipboard.git",
+  "_target": "~2.1.6",
+  "_originalSource": "zeroclipboard"
+}

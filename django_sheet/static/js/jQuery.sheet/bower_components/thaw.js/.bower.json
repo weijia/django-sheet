@@ -1,0 +1,37 @@
+{
+  "name": "thaw.js",
+  "main": "thaw.js",
+  "version": "1.1.5",
+  "homepage": "https://github.com/robertleeplummerjr/thaw.js",
+  "authors": [
+    "Robert Plummer <robertleeplummerjr@gmail.com> (http://visop-dev.com)"
+  ],
+  "description": "synthetic asynchronous processing in javascript",
+  "keywords": [
+    "asynchronous",
+    "processing",
+    "fast",
+    "web",
+    "worker"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "testify.js": "*"
+  },
+  "_release": "1.1.5",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.1.5",
+    "commit": "9fb768ddb33cfe7f5ff930fd9567a3f63eeed2d0"
+  },
+  "_source": "git://github.com/robertleeplummerjr/thaw.js.git",
+  "_target": "*",
+  "_originalSource": "thaw.js"
+}

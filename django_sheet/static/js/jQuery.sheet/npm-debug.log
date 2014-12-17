@@ -1,0 +1,64 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'zeroclipboard' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose node symlink C:\Program Files\nodejs\\node.exe
+5 verbose cache add [ 'zeroclipboard', null ]
+6 verbose cache add name=undefined spec="zeroclipboard" args=["zeroclipboard",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'zeroclipboard',
+7 verbose parsed url   path: 'zeroclipboard',
+7 verbose parsed url   href: 'zeroclipboard' }
+8 silly lockFile 30ffa6b2-zeroclipboard zeroclipboard
+9 verbose lock zeroclipboard D:\userdata\q19420\Application Data\npm-cache\30ffa6b2-zeroclipboard.lock
+10 silly lockFile 30ffa6b2-zeroclipboard zeroclipboard
+11 silly lockFile 30ffa6b2-zeroclipboard zeroclipboard
+12 verbose addNamed [ 'zeroclipboard', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile 33ab8799-zeroclipboard zeroclipboard@
+15 verbose lock zeroclipboard@ D:\userdata\q19420\Application Data\npm-cache\33ab8799-zeroclipboard.lock
+16 silly addNameRange { name: 'zeroclipboard', range: '*', hasData: false }
+17 verbose request where is /zeroclipboard
+18 verbose request registry http://registry.cnpmjs.org/
+19 verbose request id a56c352be34e433b
+20 verbose url raw /zeroclipboard
+21 verbose url resolving [ 'http://registry.cnpmjs.org/', './zeroclipboard' ]
+22 verbose url resolved http://registry.cnpmjs.org/zeroclipboard
+23 verbose request where is http://registry.cnpmjs.org/zeroclipboard
+24 info trying registry request attempt 1 at 23:52:49
+25 http GET http://registry.cnpmjs.org/zeroclipboard
+26 info retry will retry, error on last attempt: Error: read ECONNRESET
+27 info trying registry request attempt 2 at 23:53:21
+28 http GET http://registry.cnpmjs.org/zeroclipboard
+29 info retry will retry, error on last attempt: Error: read ECONNRESET
+30 info trying registry request attempt 3 at 23:54:44
+31 http GET http://registry.cnpmjs.org/zeroclipboard
+32 silly lockFile 33ab8799-zeroclipboard zeroclipboard@
+33 silly lockFile 33ab8799-zeroclipboard zeroclipboard@
+34 error network getaddrinfo ENOTFOUND
+34 error network This is most likely not a problem with npm itself
+34 error network and is related to network connectivity.
+34 error network In most cases you are behind a proxy or have bad network settings.
+34 error network
+34 error network If you are behind a proxy, please make sure that the
+34 error network 'proxy' config is set properly.  See: 'npm help config'
+35 error System Windows_NT 6.1.7601
+36 error command "C:\\Program Files\\nodejs\\\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "zeroclipboard"
+37 error cwd D:\work\mine\codes\using-repo\jQuery.sheet-master
+38 error node -v v0.10.33
+39 error npm -v 1.4.28
+40 error syscall getaddrinfo
+41 error code ENOTFOUND
+42 error errno ENOTFOUND
+43 verbose exit [ 1, true ]
