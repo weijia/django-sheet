@@ -29,5 +29,3 @@ urlpatterns = patterns('',
     #url(r'^api/', include(create_tastypie_resource(StringCellValue).urls)),
     url(r'^api/', include(create_tastypie_resource(IntegerCellValue).urls)),
 )
-
-add_default_root_url("^django_sheet/")
