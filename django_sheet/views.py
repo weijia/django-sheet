@@ -59,6 +59,7 @@ def update_cell(request):
                                         sheet=sheet)
     if existing_cell.exists():
         existing_cell[0].cell_value = s
+        existing_cell.save()
     else:
         c = Cell(cell_row=json_obj["cell_row"], cell_column=json_obj["cell_column"],
                  sheet=sheet, cell_value=s)
