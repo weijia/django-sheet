@@ -38,8 +38,6 @@ class HandsonTableSpreadSheetTemplateView(TemplateView):
         return kwargs
 
 
-
-
 def update_cell(request):
     data = retrieve_param(request)
     json_str = ""
@@ -59,7 +57,7 @@ def update_cell(request):
                                         sheet=sheet)
     if existing_cell.exists():
         existing_cell[0].cell_value = s
-        existing_cell.save()
+        existing_cell[0].save()
     else:
         c = Cell(cell_row=json_obj["cell_row"], cell_column=json_obj["cell_column"],
                  sheet=sheet, cell_value=s)
