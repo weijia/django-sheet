@@ -36,7 +36,7 @@
 	                $('#jQuerySheet0 colgroup col')[index].style.width = width+"px";
 	            }
 
-	            $.getJSON("/django_sheet/api/cell/?format=json&sheet__sheet_name={{sheet_name}}", "", function(serverJson){
+	            $.getJSON("/django_sheet/api/cell/?format=json&limit=9999&sheet__sheet_name={{sheet_name}}", "", function(serverJson){
 	                var tableStr = loadJson(serverJson);
                     $("#sheet0Table").html(tableStr);
                     $.getJSON("/django_sheet/api/sheet/?format=json&sheet_name={{sheet_name}}", "", function(sheetInfo){
@@ -62,7 +62,10 @@
 							var col = cell.td.cellIndex;
 							var row = cell.td.parentNode.rowIndex;
 							var title = cell.td.table.title;
-							console.log(col, row, cell.value);
+							//console.log(col, row, cell.value);
+                            if(title == ""){
+                                console.log(cell);
+                            }
 
                                 // This may require the ``json2.js`` library for older browsers.
                                 var data = JSON.stringify({
@@ -70,7 +73,8 @@
                                     "cell_column": col-1,
                                     "value": cell.value,
                                     //"cell_value": a["resource_uri"],
-                                    "sheet": title
+                                    //"sheet": title
+                                    "sheet": "{{sheet_name}}"
                                 });
 
                                 $.ajax({

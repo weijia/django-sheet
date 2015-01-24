@@ -31,8 +31,8 @@ class Cell(models.Model):
     sheet = models.ForeignKey(Sheet)
 
     def __unicode__(self):
-        return unicode("%s - %s (%d, %d) - %s" % (self.sheet.sheet_file.filename, self.sheet.sheet_name,
-                                                  self.cell_row, self.cell_column, str(self.cell_value)))
+        return unicode(u"%s - %s (%d, %d) - %s" % (self.sheet.sheet_file.filename, self.sheet.sheet_name,
+                                                  self.cell_row, self.cell_column, unicode(self.cell_value)))
 
 
 class DateCellValue(models.Model):
@@ -48,11 +48,16 @@ class FloatCellValue(models.Model):
     def __unicode__(self):
         return unicode("%s" % str(self.value))
 
+
 class StringCellValue(models.Model):
     value = models.CharField(max_length=4096)
 
     def __unicode__(self):
-        return unicode("%s" % str(self.value))
+        try:
+            return self.value
+        except:
+            return "Invalid encoded string cell value"
+
 
 class IntegerCellValue(models.Model):
     value = models.IntegerField()
